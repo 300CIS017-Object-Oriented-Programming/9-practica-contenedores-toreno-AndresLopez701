@@ -1,22 +1,33 @@
-#ifndef VIDEOJUEGO_H
-#define VIDEOJUEGO_H
+#ifndef TORNEO_H
+#define TORNEO_H
 
 #include <iostream>
+#include <map>
+#include <string>
+#include "Jugador.h"
+#include "Videojuego.h"
+
 using namespace std;
 
-class Videojuego {
+class Torneo {
 private:
-    string codigo;
     string nombre;
-    string genero;
-    int nivelDificultad;
+    map<string, Jugador*> jugadoresRegistrados;  // Mapa de jugadores registrados, usando su nickname como clave
+    map<string, Videojuego*> videojuegosDisponibles;  // Mapa de videojuegos disponibles, usando el código como clave
 
 public:
     // Constructor
-    Videojuego(string cod, string nom, string gen, int nivel);
+    Torneo(string nom);
 
-    // Método para mostrar datos del videojuego
-    void mostrar();
+    // Métodos para agregar jugadores y videojuegos al torneo
+    void agregarJugador(Jugador* jugador);
+    void agregarVideojuego(Videojuego* videojuego);
+
+    // Inscribir un jugador en un videojuego
+    void inscribirJugadorEnVideojuego(string nickname, string codigo);
+
+    // Mostrar los videojuegos en los que un jugador está inscrito
+    void mostrarVideojuegosDeJugador(string nickname);
 };
 
-#endif // VIDEOJUEGO_H
+#endif // TORNEO_H
