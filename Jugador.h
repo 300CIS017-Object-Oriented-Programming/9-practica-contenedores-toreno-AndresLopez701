@@ -3,24 +3,32 @@
 
 #include <iostream>
 #include <vector>
-#include "Videojuego.h"  // Asegúrate de incluir Videojuego.h si estás manejando videojuegos en esta clase.
-
-using namespace std;
+#include "Videojuego.h"
 
 class Jugador {
 private:
-    string nickname;
+    std::string nickname;
     int nivelRanking;
-    vector<Videojuego*> videojuegosInscritos;  // Vector de punteros a Videojuego
+    std::vector<Videojuego*> videojuegosInscritos; // Videojuegos en los que está inscrito
 
 public:
     // Constructor
-    Jugador(string nick, int nivel);
+    Jugador(std::string nickname, int nivelRanking);
 
-    // Métodos
-    void mostrar();  // Mostrar datos del jugador
-    void inscribirEnVideojuego(Videojuego* videojuego);  // Método para inscribir un jugador en un videojuego
-    vector<Videojuego*> getVideojuegosInscritos();  // Método para obtener los videojuegos en los que está inscrito el jugador
+    // Getters
+    std::string getNickname() const;
+    int getNivelRanking() const;
+
+    // Setters
+    void setNivelRanking(int nuevoNivel);
+
+    // Métodos para gestionar inscripciones
+    bool inscribirEnVideojuego(Videojuego* videojuego);
+    void mostrarVideojuegosInscritos() const;
+    double calcularPromedioDificultad() const;
+
+    // Mostrar información del jugador
+    void mostrarDatos() const;
 };
 
 #endif // JUGADOR_H

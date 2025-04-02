@@ -1,27 +1,30 @@
 #ifndef VIDEOJUEGO_H
 #define VIDEOJUEGO_H
 
-#include <iostream>
-using namespace std;
+#include <string>
 
 class Videojuego {
 private:
-    string codigo;
-    string nombre;
-    string genero;
-    int clasificacion;
+    std::string codigo;  // Código único del videojuego
+    std::string nombre;
+    std::string genero;
+    int nivelDificultad; // Rango de 1 (fácil) a 5 (difícil)
 
 public:
     // Constructor
-    Videojuego(string cod, string nom, string gen, int clasif);
+    Videojuego(std::string codigo, std::string nombre, std::string genero, int nivelDificultad);
 
-    // Métodos para obtener los datos del videojuego
-    string getCodigo() const;
-    string getNombre() const;
-    int getClasificacion() const;
+    // Getters
+    std::string getCodigo() const;
+    std::string getNombre() const;
+    std::string getGenero() const;
+    int getNivelDificultad() const;
 
-    // Método para mostrar datos del videojuego
-    void mostrar();
+    // Setters con validación
+    void setNivelDificultad(int nuevoNivel);
+
+    // Mostrar información del videojuego
+    void mostrarDatos() const;
 };
 
 #endif // VIDEOJUEGO_H

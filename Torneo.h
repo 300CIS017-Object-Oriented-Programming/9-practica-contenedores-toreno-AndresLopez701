@@ -3,31 +3,36 @@
 
 #include <iostream>
 #include <map>
-#include <string>
-#include "Jugador.h"
+#include <vector>
 #include "Videojuego.h"
-
-using namespace std;
+#include "Jugador.h"
 
 class Torneo {
 private:
-    string nombre;
-    map<string, Jugador*> jugadoresRegistrados;  // Mapa de jugadores registrados, usando su nickname como clave
-    map<string, Videojuego*> videojuegosDisponibles;  // Mapa de videojuegos disponibles, usando el código como clave
+    std::map<std::string, Videojuego*> videojuegosDisponibles; // Catálogo oficial de videojuegos
+    std::map<std::string, Jugador*> jugadoresRegistrados; // Jugadores en el torneo
 
 public:
-    // Constructor
-    Torneo(string nom);
+    // Constructor y destructor
+    Torneo() = default;
+    ~Torneo();
 
-    // Métodos para agregar jugadores y videojuegos al torneo
-    void agregarJugador(Jugador* jugador);
-    void agregarVideojuego(Videojuego* videojuego);
+    // Métodos de gestión de videojuegos
+    void registrarVideojuego(const std::string& codigo, const std::string& nombre, const std::string& genero, int nivelDificultad);
+    void mostrarVideojuegos() const;
 
-    // Inscribir un jugador en un videojuego
-    void inscribirJugadorEnVideojuego(string nickname, string codigo);
+    // Métodos de gestión de jugadores
+    void registrarJugador(const std::string& nickname, int nivelRanking);
+    void mostrarJugadores() const;
 
-    // Mostrar los videojuegos en los que un jugador está inscrito
-    void mostrarVideojuegosDeJugador(string nickname);
+    // Inscripciones y consultas
+    void inscribirJugadorEnVideojuego(const std::string& nickname, const std::string& codigoVideojuego);
+    void mostrarJuegosDeJugador(const std::string& nickname) const;
+    void calcularPromedioDificultad(const std::string& nickname) const;
+
+    // Métodos de inicialización
+    void inicializarVideojuegos();
+    void inicializarJugadores();
 };
 
 #endif // TORNEO_H
